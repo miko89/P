@@ -107,7 +107,7 @@
         
 
         // L.control.Layers(baselayer).addTo(map);
-        let utc = 8;
+        let utc = 7;
         let date = new moment();
         let tanggal = document.querySelector('.tanggal');
         let selectTanggal = document.querySelector('[name=select-tanggal]');
@@ -271,7 +271,7 @@
             let jam = date.substr(8, 2);
             let menit = date.substr(10, 2);
             let setTanggal = tahun + '-' + bulan + '-' + tanggal + ' ' + jam + ':' + menit + ':00';
-            return moment(setTanggal).add(utc, 'h').format('DD MMMM YYYY HH:mm') + ' WITA';
+            return moment(setTanggal).add(utc, 'h').format('DD MMMM YYYY HH:mm') + ' WIB';
 
         }
 
