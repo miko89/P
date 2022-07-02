@@ -429,7 +429,7 @@ body {
 
     };
 
-        var layerControl = L.control.layers(baseLayers, overlays, {position: 'bottomright'});
+        var layerControl = L.control.layers(baseLayers, overlays, {position: 'topright'});
         layerControl.addTo(map);
 
 // let dataGlobal;
@@ -448,7 +448,7 @@ body {
 
 
 
-var legend = L.control({ position: 'topright' });
+var legend = L.control({ position: 'topleft' });
 
 legend.onAdd = function (map) {
 
