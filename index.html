@@ -431,6 +431,28 @@ body {
 //   console.log(dataGlobal);
 // })();
 
+
+
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ["<b>Titik Hotspot (Sumber:LAPAN) </b>"],
+        labels = ['image/category_cyclone.png'];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var j = 0; j < grades.length; j++) {
+        div.innerHTML +=
+            // grades[j] + '<br>' + (" <img src=" + labels[j] + " height='45' width='250'>");
+            (" <img src=" + labels[j] + " height='45' width='250'>");
+    }
+
+    return div;
+};
+
+legend.addTo(map);
+
     </script>
 </body>
 
