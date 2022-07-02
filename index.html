@@ -31,42 +31,83 @@
             margin: 0;
         }
 
+        @media (max-width: 475px) {
+            #map {
+                /* width: 894px; */
+                height: 700px;
+                top: 180px;
+            }
+        }
+
         header {
             position: absolute;
             width: 100%;
         height: 100px;
             /* z-index: 1000; */
             background: linear-gradient(to right, #173333, #081136);;
+            /* font-size: 32px; */
+            
+        }
+        @media (max-width: 475px){
+        header
+        {
+            position: absolute;
+            width: 100%;
+        height: 200px;
+            /* z-index: 1000; */
+            background: linear-gradient(to right, #173333, #081136);;
            
-            font-family: 'Montserrat', sans-serif;
+          
+
         }
 
+    }
         header h1 {
 
             padding: 0px 10px;
             margin: 10px;
+            font-size: 30px;
+            font-family: 'Montserrat', sans-serif;
+            
+            
         }
 
         @media (max-width: 1500px) {
-            .header h1 {
-                top: 170px;
-                height: 550px;
-                width: 45px;
-                font-size: 1em;
+            header h1 {
+            font-size: 25px;
+            font-family: 'Montserrat', sans-serif;
+            }
+        }
 
-
+        @media (max-width: 475px) {
+            header h1 {
+            font-size: 20px;
+            font-family: 'Montserrat', sans-serif;
             }
         }
 
         header p {
+           
             padding: 0px 10px;
             margin: 10px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 10%;
         }
 
         header .select {
             position: absolute;
             right: 30px;
             top: 30px
+        }
+
+        @media (max-width: 475px) {
+            header .select {
+            position: absolute;
+            right: 30px;
+            top: 100px
+
+
+            }
         }
 
         body{
