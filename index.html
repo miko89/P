@@ -23,26 +23,30 @@
     <style>
         #map {
             height: 100vh;
-            width: 100%
+            width: 100%;
+            top:100px;
+            padding: 0;
+            margin: 0;
         }
 
         header {
             position: absolute;
-            width: calc(100% - 120px);
-            top: 5px;
-            left: 70px;
-            z-index: 1000;
+            width: 100%;
+            /* z-index: 1000; */
             background: white;
-            opacity: 80%;
-            padding: 0px 10px;
-            margin: 10px;
+           
             font-family: 'Montserrat', sans-serif;
         }
 
         header h1 {
 
-            padding: 0;
-            margin: 0;
+            padding: 0px 10px;
+            margin: 10px;
+        }
+
+        header p {
+            padding: 0px 10px;
+            margin: 10px;
         }
 
         header .select {
@@ -51,10 +55,10 @@
             top: 30px
         }
 
-        /* body{
+        body{
         padding: 0;
         margin: 0;
-    } */
+    }
     </style>
 </head>
 
@@ -89,7 +93,7 @@
         let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
         let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
         // let markersLayers = new L.LayerGroup();
-        let map = L.map('map', { layers: light }).setView([0, 118.9213], 5);
+        let map = L.map('map', { layers: light }).setView([-2.5, 118.9213], 5);
         let OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© OpenStreetMap'
