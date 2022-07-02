@@ -5,6 +5,8 @@
     <title>
         Prakicu Indonesia
     </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin="" />
@@ -22,7 +24,7 @@
 
     <style>
         #map {
-            height: 100vh;
+            height: 80vh;
             width: 100%;
             top:100px;
             padding: 0;
@@ -32,8 +34,9 @@
         header {
             position: absolute;
             width: 100%;
+        height: 100px;
             /* z-index: 1000; */
-            background: white;
+            background: linear-gradient(to right, #173333, #081136);;
            
             font-family: 'Montserrat', sans-serif;
         }
@@ -42,6 +45,17 @@
 
             padding: 0px 10px;
             margin: 10px;
+        }
+
+        @media (max-width: 475px) {
+            .header h1 {
+                top: 170px;
+                height: 550px;
+                width: 45px;
+                font-size: 2em;
+
+
+            }
         }
 
         header p {
@@ -59,6 +73,75 @@
         padding: 0;
         margin: 0;
     }
+
+    :root {
+  /* --background-gradient: linear-gradient(30deg, #f39c12 30%, #f1c40f); */
+  --gray: #34495e;
+  --darkgray: #2c3e50;
+}
+
+    select {
+  /* Reset Select */
+  font-weight: bold;
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 7em;
+  color: rgb(255, 255, 255);
+  background-color: var(--darkgray);
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+    font-weight: bold;
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position:relative;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #052538;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: rgb(255, 174, 0);
+  cursor: pointer;
+}
+
+/* Other styles*/
+body {
+  color: rgb(255, 255, 255);
+  background: var(--background-gradient);
+}
+/* h1 {
+  margin: 0 0 0.25em;
+} */
+/* a {
+  font-weight: bold;
+  color: var(--gray);
+  text-decoration: none;
+  padding: .10em;
+  border-radius: .10em;
+  background: white;
+} */
     </style>
 </head>
 
@@ -99,13 +182,8 @@
             attribution: '© OpenStreetMap'
         });
 
-        let baseLayers = {
-            "Light": light,
-            "Dark": dark,
-            "OSM":OSM 
-        };
+       
 
-        L.control.layers(baseLayers).addTo(map);
         let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
         let markersLayers = new L.LayerGroup();
         
@@ -279,7 +357,23 @@
 
         }
 
+        
+        
+        var baseLayers = {
+            "Light": light,
+            "Dark": dark,
+            "OSM":OSM 
+            
+        };
+        
+        var overlays = {
+        // "Citra Satelit": LayerSatelit,
+        "Prakiraan": markersLayers,
 
+    };
+
+        var layerControl = L.control.layers(baseLayers, overlays, {position: 'bottomleft'});
+        layerControl.addTo(map);
 
 // let dataGlobal;
 
