@@ -84,7 +84,7 @@
 
         @media (max-width: 1500px) {
             header h1 {
-                font-size: 25px;
+                font-size: 2px;
                 font-family: 'Montserrat', sans-serif;
                 color: white;
             }
@@ -92,7 +92,7 @@
 
         @media (max-width: 475px) {
             header h1 {
-                font-size: 20px;
+                font-size: 18px;
                 font-family: 'Montserrat', sans-serif;
                 color: white;
             }
@@ -105,6 +105,15 @@
             font-family: 'Arial';
             color: white;
             line-height: 10%;
+        }
+
+        @media (max-width: 475px) {
+            header p {
+
+
+                font-size: 15px;
+
+            }
         }
 
         header .select {
@@ -218,7 +227,7 @@
                 Prakiraan Cuaca Provinsi Indonesia
             </h1>
             <p>
-                Tanggal : <span class="tanggal"></span>    <i>(sumber : BMKG)</i>
+                Tanggal : <span class="tanggal"></span> <i>(sumber : BMKG)</i>
             </p>
         </div>
         <div class="select">
@@ -546,7 +555,7 @@
             var Category = parseInt(siklonbbutrackJSON_1[j].Category)
             var Coordinate = new L.latLng(([siklonbbutrackJSON_1[j].Latitude, siklonbbutrackJSON_1[j].Longitude]))
             var marker = L.marker(Coordinate, { icon: customIconbbu_2 })
-            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">'+ siklonbbutrackJSON_1[j].Name + '</h3></b></center>' + siklonbbutrackJSON_1[j].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[j].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[j].MeanWind + "kt");
+            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[j].Name + '</h3></b></center>' + siklonbbutrackJSON_1[j].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[j].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[j].MeanWind + "kt");
             if (Category > 1 && Category < 3) { track_siklon_bbu.addLayer(marker) }
             else { }
         }
@@ -565,7 +574,7 @@
             var Category = parseInt(siklonbbutrackJSON_1[k].Category)
             var Coordinate = new L.latLng(([siklonbbutrackJSON_1[k].Latitude, siklonbbutrackJSON_1[k].Longitude]))
             var marker = L.marker(Coordinate, { icon: customIconbbu_3 })
-            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">'+ siklonbbutrackJSON_1[k].Name + '</h3></b></center>' + siklonbbutrackJSON_1[k].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[k].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[k].MeanWind + "kt");
+            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[k].Name + '</h3></b></center>' + siklonbbutrackJSON_1[k].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[k].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[k].MeanWind + "kt");
             if (Category > 2 && Category < 4) { track_siklon_bbu.addLayer(marker) }
             else { }
         }
