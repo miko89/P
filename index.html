@@ -444,7 +444,7 @@
 
 
 
-        var legend = L.control({ position: 'topleft' });
+        var legend = L.control({ position: 'topright' });
 
         legend.onAdd = function (map) {
 
@@ -611,7 +611,7 @@
 
         };
 
-        var layerControl = L.control.layers(baseLayers, overlays, { position: 'topright' });
+        var layerControl = L.control.layers(baseLayers, overlays, { position: 'topleft' });
         layerControl.addTo(map);
 
     </script>
