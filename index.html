@@ -26,6 +26,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     <style>
         #map {
@@ -216,6 +218,69 @@
             color: rgb(19, 19, 19);
             opacity: 1;
         }
+
+
+
+        .container {
+        top: 480px;
+            margin-left: 500px;
+            margin-right: 0;
+            max-width: 300px;
+            background-color:none;
+            position: relative;
+            object-position: center;
+            z-index: 1500;
+            
+
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 20px;
+            border-radius: 10px;
+            background: rgb(0, 0, 0);
+            outline: none;
+            opacity: 0.5;            
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            cursor:pointer;
+            z-index: 1500
+
+
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgb(174, 246, 255);
+            cursor: pointer;
+        }
+
+
+        .imageslider {
+            width: 740px;
+            height: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+
+        .imagefdrs {
+
+            opacity: 0.5;
+
+        }
+
+
     </style>
 </head>
 
@@ -234,7 +299,18 @@
         </div>
     </header>
 
-    <div id="map"></div>
+    <div id="map">
+        <div class="container">
+            
+            <input onchange='setImage(this)' type="range" min="0" max="7" value="0" step="1" id="myRange"
+            class="slider">
+            </div>
+
+
+    </div>
+
+<img id='img_satelit' src='image/H08_ET_Indonesia_202207051600.png' height="0" width="0" class="imagefdrs" />
+
 
 
     <script>
@@ -262,7 +338,7 @@
         let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
         let markersLayers = new L.LayerGroup();
 
-
+       
         // L.control.Layers(baselayer).addTo(map);
         let utc = 7;
         let date = new moment();
@@ -592,14 +668,41 @@
 
 
 
-        var imageUrl_satelit = document.getElementById("img_satelit")
-        var imageBounds_satelit = new L.LatLngBounds(
-            new L.LatLng(-20.2, 88.8),
-            new L.LatLng(32.0, 150.0)
-        )
+        // var imageUrl_satelit = document.getElementById('image/H08_ET_Indonesia_202206301200.png')
+        // var imageBounds_satelit = new L.LatLngBounds(
+        //     new L.LatLng(-20.2, 88.8),
+        //     new L.LatLng(32.0, 150.0)
+        // )
 
 
-        var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
+        // var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
+       
+        var data_d00 = moment.utc().subtract(1, 'hours').format('YYYYMMDDHH');
+        console.log(data_d00)
+
+
+        var satelit = document.getElementById('img_satelit');
+            var img_array1 = ['image/H08_ET_Indonesia_'+data_d00+'00.png', 'image/H08_ET_Indonesia_'+data_d00+'10.png', 'image/H08_ET_Indonesia_'+data_d00+'20.png', 'image/H08_ET_Indonesia_'+data_d00+'30.png', 'image/H08_ET_Indonesia_'+data_d00+'40.png', 'image/H08_ET_Indonesia_'+data_d00+'50.png'];
+              function setImage(obj) {
+                var value = obj.value;
+                satelit.src = img_array1[value];
+
+            }
+            console.log(img_array1)
+            var imageUrl_satelit = document.getElementById("img_satelit")
+            var imageBounds_satelit = new L.LatLngBounds(
+                new L.LatLng(-20.2, 88.8),
+                new L.LatLng(32.0, 150.0)
+            )
+
+            var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
+
+        //     var satelit = document.getElementById('img_satelit');
+        // var imageUrl = 'image/H08_ET_Indonesia_'+data_00+'00.png',
+        //     imageBounds = [[-20.2, 88.8], [32.0, 150.0]];
+       
+        // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 })//.addTo(map);
+
 
         var baseLayers = {
             "Light": light,
