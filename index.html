@@ -346,7 +346,7 @@
                             '</tr>';
                     }
 
-                    if (getDateTime.substring(0, 10) >= dateTime.format('YYYYMMDDHH') && getTime == false) {
+                    if (getDateTime.substring(0, 10) > dateTime.format('YYYYMMDDHH') && getTime == false) {
                         posPrakiraan = i;
                         nextDate = getDateTime;
                         getTime = true;
