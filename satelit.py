@@ -35,3 +35,11 @@ proses=ftp.retrbinary("RETR " + H04 ,open('D:/xampp/htdocs/prakicuindo/image/H08
 H05='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png'
 proses=ftp.retrbinary("RETR " + H05 ,open('D:/xampp/htdocs/prakicuindo/image/H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png', 'wb').write)
 
+print("H00")
+print("H01")
+print("H02")
+print("H03")
+print("H04")
+print("H05")
+
+
