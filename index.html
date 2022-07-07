@@ -224,10 +224,10 @@
 
 
         .container {
-        top: 480px;
-            margin-left: 550px;
+        top: 420px;
+            margin-left: 10px;
             margin-right: 0;
-            max-width: 300px;
+            max-width: 400px;
             background-color:none;
             position: relative;
             object-position: center;
@@ -237,33 +237,15 @@
         }
 
        
-        @media (max-width: 475px) {
-            .container {
-        top: 300px;
-            margin-left: 50px;
-           
-            
+     
 
-        }
-        }
-
-
-        @media (max-width: 1200px) {
-            .container {
-        top: 100px;
-            margin-left: 10px;
-           
-            
-
-        }
-        }
 
         .slider {
             -webkit-appearance: none;
             width: 100%;
-            height: 20px;
+            height: 10px;
             border-radius: 10px;
-            background: rgb(0, 0, 0);
+            background: rgba(117, 117, 117, 0.5);
             outline: none;
             opacity: 0.5;            
             -webkit-transition: .2s;
@@ -281,10 +263,10 @@
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 15px;
-            height: 15px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background: rgb(174, 246, 255);
+            background: rgb(240, 8, 143);
             cursor: pointer;
         }
 
@@ -300,7 +282,7 @@
 
         .imagefdrs {
 
-            opacity: 0.5;
+            opacity: 0.3;
 
         }
 
@@ -333,7 +315,7 @@
 
     </div>
 
-<img id='img_satelit' src='image/H08_ET_Indonesia_202207051600.png' height="0" width="0" class="imagefdrs" />
+<img id='img_satelit' src='image/H08_ET_Indonesia_202207070000.png' height="0" width="0" class="imagefdrs" />
 
 
 
@@ -715,8 +697,8 @@
             console.log(img_array1)
             var imageUrl_satelit = document.getElementById("img_satelit")
             var imageBounds_satelit = new L.LatLngBounds(
-                new L.LatLng(-20.2, 88.8),
-                new L.LatLng(32.0, 150.0)
+                new L.LatLng(-18.6, 88.8),
+                new L.LatLng(20.0, 152.0)
             )
 
             var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
