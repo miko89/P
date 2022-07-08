@@ -22,6 +22,8 @@ ftp.cwd(path)
 dataloc=os.getcwd()+'\\data\\'
 
 
+satelit='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt00+'.png'
+proses=ftp.retrbinary("RETR " + satelit ,open('D:/xampp/htdocs/prakicuindo/image/H08_ET_Indonesia_satelit.png', 'wb').write)
 H00='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt00+'.png'
 proses=ftp.retrbinary("RETR " + H00 ,open('D:/xampp/htdocs/prakicuindo/image/H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt00+'.png', 'wb').write)
 H01='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt01+'.png'
@@ -35,11 +37,5 @@ proses=ftp.retrbinary("RETR " + H04 ,open('D:/xampp/htdocs/prakicuindo/image/H08
 H05='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png'
 proses=ftp.retrbinary("RETR " + H05 ,open('D:/xampp/htdocs/prakicuindo/image/H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png', 'wb').write)
 
-print("H00")
-print("H01")
-print("H02")
-print("H03")
-print("H04")
-print("H05")
 
 

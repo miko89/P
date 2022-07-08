@@ -343,7 +343,7 @@
 
     </div>
 
-<img id='img_satelit' src='image/H08_ET_Indonesia_202207070000.png' height="0" width="0" class="imagefdrs" />
+<img id='img_satelit' src="image/satelit.png" height="0" width="0" class="imagefdrs" />
 
 
 
@@ -358,8 +358,8 @@
         let mbAttr = 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
         let mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         // let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
-        let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
-        let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+        let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512,  zoomOffset: -1, attribution: mbAttr });
+        let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, fillopacity: 0.5,zoomOffset: -1, attribution: mbAttr });
         // let markersLayers = new L.LayerGroup();
         let map = L.map('map', { layers: light }).setView([2, 118.9213], 4);
         let OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -399,7 +399,7 @@
         };
 
 
-
+      
 
         // for (i=0;i<3;i++){
         //     let option = moment(date).add(i,'d').format('D MMMM YYYY');
@@ -714,7 +714,8 @@
         var data_d00 = moment.utc().subtract(1, 'hours').format('YYYYMMDDHH');
         console.log(data_d00)
 
-
+       
+    
         var satelit = document.getElementById('img_satelit');
             var img_array1 = ['image/H08_ET_Indonesia_'+data_d00+'00.png', 'image/H08_ET_Indonesia_'+data_d00+'10.png', 'image/H08_ET_Indonesia_'+data_d00+'20.png', 'image/H08_ET_Indonesia_'+data_d00+'30.png', 'image/H08_ET_Indonesia_'+data_d00+'40.png', 'image/H08_ET_Indonesia_'+data_d00+'50.png'];
               function setImage(obj) {
@@ -725,8 +726,8 @@
             console.log(img_array1)
             var imageUrl_satelit = document.getElementById("img_satelit")
             var imageBounds_satelit = new L.LatLngBounds(
-                new L.LatLng(-18.6, 88.8),
-                new L.LatLng(20.0, 152.0)
+                new L.LatLng(-20.0, 90.0),
+                new L.LatLng(20.0, 150.0)
             )
 
             var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
