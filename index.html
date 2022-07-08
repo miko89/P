@@ -760,6 +760,14 @@
         var layerControl = L.control.layers(baseLayers, overlays, { position: 'topleft' });
         layerControl.addTo(map);
 
+        $.ajax({
+  type: "POST",
+  url: "~/citrasatelit.py",
+  data: { param: text}
+}).done(function( o ) {
+   // do something
+});
+
     </script>
 </body>
 
