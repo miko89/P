@@ -8,7 +8,7 @@ from datetime import timezone
 d = (datetime.utcnow()+timedelta(days=0)).strftime("%d")
 m = datetime.utcnow().strftime("%m") 	
 y = datetime.utcnow().strftime("%Y")
-h = (datetime.utcnow()+timedelta(hours=0)).strftime("%H")
+h = (datetime.utcnow()+timedelta(minutes=-30)).strftime("%H")
 path = '/himawari_vol/himawari4/HIMAWARI-8/DATA/image/Indonesia/'+y+'/'+m+'/'+d+'/'
 tt00 = '00'
 tt01 = '10'
