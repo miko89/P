@@ -27,7 +27,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
     <style>
         #map {
@@ -215,42 +215,42 @@
 
 
 
-        .legendforecast {
-            line-height: 18px;
-            color: rgb(19, 19, 19);
-            opacity: 1;
+        .infolegend {
+           
+            color: rgb(109, 109, 109);
+            
         }
 
 
 
         .container {
-        top: 450px;
+            top: 430px;
             margin-left: 10px;
             margin-right: 0;
-            max-width: 400px;
-            background-color:none;
+            max-width: 300px;
+            background-color: none;
             position: relative;
             object-position: center;
             z-index: 1500;
-            
+
 
         }
 
         @media (max-width: 475px) {
             .container {
-        top: 520px;
-            margin-left: 10px;
-            margin-right: 0;
-            max-width: 400px;
-            background-color:none;
-            position: relative;
-            object-position: center;
-            z-index: 1500;
-            
+                top: 520px;
+                margin-left: 10px;
+                margin-right: 0;
+                max-width: 400px;
+                background-color: none;
+                position: relative;
+                object-position: center;
+                z-index: 1500;
 
+
+            }
         }
-        }
-     
+
 
         /* @media (max-width: 1500px) {
             .container {
@@ -275,17 +275,15 @@
             border-radius: 10px;
             background: rgba(117, 117, 117, 0.5);
             outline: none;
-            opacity: 0.5;            
+            opacity: 0.5;
             -webkit-transition: .2s;
             transition: opacity .2s;
             display: block;
             margin-left: auto;
             margin-right: auto;
             margin-top: 5px;
-            cursor:pointer;
+            cursor: pointer;
             z-index: 1500
-
-
         }
 
         .slider::-webkit-slider-thumb {
@@ -313,8 +311,6 @@
             opacity: 0.3;
 
         }
-
-
     </style>
 </head>
 
@@ -335,15 +331,17 @@
 
     <div id="map">
         <div class="container">
-            
-            <input onchange='setImage(this)' type="range" min="0" max="7" value="0" step="1" id="myRange"
-            class="slider">
-            </div>
+
+            <input onchange='setImage(this)' type="range" min="0" max="5" value="0" step="1" id="myRange"
+                class="slider"> 
+                <p style="color:rgb(128, 128, 128)"><b>Citra Satelit : </b><span
+                    id="date00" style="color:rgb(128, 128, 128)"></span>.00 UTC</p>
+        </div>
 
 
     </div>
 
-<img id='img_satelit' src="image/H08_ET_Indonesia_satelit.png" height="0" width="0" class="imagefdrs" />
+    <img id='img_satelit' src="" height="0" width="0" class="imagefdrs" />
 
 
 
@@ -358,8 +356,8 @@
         let mbAttr = 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
         let mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
         // let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
-        let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512,  zoomOffset: -1, attribution: mbAttr });
-        let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, fillopacity: 0.5,zoomOffset: -1, attribution: mbAttr });
+        let light = L.tileLayer(mbUrl, { id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+        let dark = L.tileLayer(mbUrl, { id: 'mapbox/dark-v9', tileSize: 512, fillopacity: 0.5, zoomOffset: -1, attribution: mbAttr });
         // let markersLayers = new L.LayerGroup();
         let map = L.map('map', { layers: light }).setView([2, 118.9213], 4);
         let OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -372,7 +370,7 @@
         let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
         let markersLayers = new L.LayerGroup();
 
-       
+
         // L.control.Layers(baselayer).addTo(map);
         let utc = 7;
         let date = new moment();
@@ -399,7 +397,7 @@
         };
 
 
-      
+
 
         // for (i=0;i<3;i++){
         //     let option = moment(date).add(i,'d').format('D MMMM YYYY');
@@ -566,7 +564,7 @@
 
         legend.onAdd = function (map) {
 
-            var div = L.DomUtil.create('div', 'info legend'),
+            var div = L.DomUtil.create('div', 'infolegend'),
                 grades = ["<b>Titik Hotspot (Sumber:LAPAN) </b>"],
                 labels = ['image/legend_cyclone.svg'];
 
@@ -585,7 +583,7 @@
         var legendforecast = L.control({ position: "bottomleft", });
         legendforecast.onAdd = function (map) {
 
-            var div = L.DomUtil.create('div', 'info legend'),
+            var div = L.DomUtil.create('div', 'infolegend'),
                 grades = ["<center><b>LEGENDA PRAKIRAAN CUACA</b></center>"]
             cuaca = ["<center><b> &ensp;cerah berawan | Haze | Mist | Fog &ensp;| &ensp;Hujan Ringan | Sedang | Lebat</b></center>"]
             labels = ['image/legend_weather.svg'];
@@ -710,32 +708,38 @@
 
 
         // var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
-       
-        var data_d00 = moment.utc().subtract(1, 'hours').format('YYYYMMDDHH');
+
+        var data_d00 = moment.utc().subtract(0, 'hours').format('YYYYMMDDHH');
+
         console.log(data_d00)
 
-       
-    
+        window.onload = function () {
+            document.getElementById('img_satelit').src = img_array1[0];
+
+        };
+
+        document.getElementById("date00").innerHTML = data_d00;
+
         var satelit = document.getElementById('img_satelit');
-            var img_array1 = ['image/H08_ET_Indonesia_'+data_d00+'00.png', 'image/H08_ET_Indonesia_'+data_d00+'10.png', 'image/H08_ET_Indonesia_'+data_d00+'20.png', 'image/H08_ET_Indonesia_'+data_d00+'30.png', 'image/H08_ET_Indonesia_'+data_d00+'40.png', 'image/H08_ET_Indonesia_'+data_d00+'50.png'];
-              function setImage(obj) {
-                var value = obj.value;
-                satelit.src = img_array1[value];
+        var img_array1 = ['image/H08_ET_Indonesia_' + data_d00 + '00.png', 'image/H08_ET_Indonesia_' + data_d00 + '10.png', 'image/H08_ET_Indonesia_' + data_d00 + '20.png', 'image/H08_ET_Indonesia_' + data_d00 + '30.png', 'image/H08_ET_Indonesia_' + data_d00 + '40.png', 'image/H08_ET_Indonesia_' + data_d00 + '50.png'];
+        function setImage(obj) {
+            var value = obj.value;
+            satelit.src = img_array1[value];
 
-            }
-            console.log(img_array1)
-            var imageUrl_satelit = document.getElementById("img_satelit")
-            var imageBounds_satelit = new L.LatLngBounds(
-                new L.LatLng(-20.0, 90.0),
-                new L.LatLng(20.0, 150.0)
-            )
+        }
+        console.log(img_array1)
+        var imageUrl_satelit = document.getElementById("img_satelit")
+        var imageBounds_satelit = new L.LatLngBounds(
+            new L.LatLng(-20.0, 90.0),
+            new L.LatLng(20.0, 150.0)
+        )
 
-            var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
+        var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 }).addTo(map);
 
         //     var satelit = document.getElementById('img_satelit');
         // var imageUrl = 'image/H08_ET_Indonesia_'+data_00+'00.png',
         //     imageBounds = [[-20.2, 88.8], [32.0, 150.0]];
-       
+
         // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 })//.addTo(map);
 
 
@@ -759,9 +763,7 @@
 
         var layerControl = L.control.layers(baseLayers, overlays, { position: 'topleft' });
         layerControl.addTo(map);
- type: "POST",
- 
-  
+
     </script>
 </body>
 
