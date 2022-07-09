@@ -8,7 +8,7 @@ from datetime import timezone
 d = (datetime.utcnow()+timedelta(days=0)).strftime("%d")
 m = datetime.utcnow().strftime("%m") 	
 y = datetime.utcnow().strftime("%Y")
-h = (datetime.utcnow()+timedelta(minutes=-30)).strftime("%H")
+h = (datetime.utcnow()+timedelta(minutes=-20)).strftime("%H")
 path = '/himawari_vol/himawari4/HIMAWARI-8/DATA/image/Indonesia/'+y+'/'+m+'/'+d+'/'
 tt00 = '00'
 tt01 = '10'
@@ -37,7 +37,7 @@ proses=ftp.retrbinary("RETR " + H04 ,open('D:/xampp/htdocs/prakicuindo/image/H08
 H05='H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png'
 proses=ftp.retrbinary("RETR " + H05 ,open('D:/xampp/htdocs/prakicuindo/image/H08_ET_Indonesia_'+y+''+m+''+d+''+h+''+tt05+'.png', 'wb').write)
 
-
+print("h")
 print("H00")
 print("H01")
 print("H02")
