@@ -334,8 +334,9 @@
 
             <input onchange='setImage(this)' type="range" min="0" max="5" value="0" step="1" id="myRange"
                 class="slider"> 
+               
                 <p style="color:rgb(128, 128, 128)"><b>Citra Satelit : </b><span
-                    id="date00" style="color:rgb(128, 128, 128)"></span>.00 UTC</p>
+                    id="date00" style="color:rgb(128, 128, 128)"></span><span id="demo"></span>0UTC</p>
         </div>
 
 
@@ -719,7 +720,13 @@
         };
 
         document.getElementById("date00").innerHTML = data_d00;
-
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+                slider.oninput = function (e) {
+                    let value = parseInt(e.target.value);
+                    output.innerHTML = this.value;
+                };
         var satelit = document.getElementById('img_satelit');
         var img_array1 = ['image/H08_ET_Indonesia_' + data_d00 + '00.png', 'image/H08_ET_Indonesia_' + data_d00 + '10.png', 'image/H08_ET_Indonesia_' + data_d00 + '20.png', 'image/H08_ET_Indonesia_' + data_d00 + '30.png', 'image/H08_ET_Indonesia_' + data_d00 + '40.png', 'image/H08_ET_Indonesia_' + data_d00 + '50.png'];
         function setImage(obj) {
