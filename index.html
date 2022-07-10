@@ -227,14 +227,25 @@
             top: 430px;
             margin-left: 10px;
             margin-right: 0;
-            max-width: 300px;
+            max-width: 380px;
             background-color: none;
             position: relative;
             object-position: center;
             z-index: 1500;
+            text-align: center;
 
 
         }
+
+        .container p {
+            
+            text-align: center;
+            object-position: center;
+
+
+        }
+
+
 
         @media (max-width: 475px) {
             .container {
@@ -710,7 +721,7 @@
 
         // var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
 
-        var data_d00 = moment.utc().subtract(60, 'minutes').format('YYYYMMDDHH');
+        var data_d00 = moment.utc().subtract(30, 'minutes').format('YYYYMMDDHH');
   
 
         
