@@ -216,9 +216,9 @@
 
 
         .infolegend {
-           
+
             color: rgb(109, 109, 109);
-            
+
         }
 
 
@@ -238,7 +238,7 @@
         }
 
         .container p {
-            
+
             text-align: center;
             object-position: center;
 
@@ -344,10 +344,10 @@
         <div class="container">
 
             <input onchange='setImage(this)' type="range" min="0" max="5" value="0" step="1" id="myRange"
-                class="slider"> 
-               
-                <p style="color:rgb(128, 128, 128)"><b>Citra Satelit : </b><span
-                    id="date00" style="color:rgb(128, 128, 128)"></span><span id="demo"></span>0UTC</p>
+                class="slider">
+
+            <p style="color:rgb(128, 128, 128)"><b>Citra Satelit : </b><span id="date00"
+                    style="color:rgb(128, 128, 128)"></span><span id="demo"></span>0UTC</p>
         </div>
 
 
@@ -612,6 +612,18 @@
         legendforecast.addTo(map);
 
 
+        var jsonbibitsiklon = 'data/bibitsiklon.json';
+        function getJSONValue(fileJSON) {
+            var value = $.ajax({
+                url: fileJSON,
+                async: false
+            }).responseText;
+            return value
+        }
+        databibitsiklon = getJSONValue(jsonbibitsiklon)
+        var bibitsiklon = JSON.parse(databibitsiklon)
+
+
         var jsonsiklonbbutrack_1 = 'data/siklonbbu_1.json';
         function getJSONValue(fileJSON) {
             var value = $.ajax({
@@ -627,7 +639,7 @@
 
 
         var customIconbbu_0 = L.icon({
-            iconUrl: 'icon/1cyclone.svg',
+            iconUrl: 'icon/0cyclone.svg',
             iconSize: [30, 30],
         }) // size of the icon
 
@@ -644,21 +656,46 @@
         }) // size of the icon     
 
         var customIconbbu_3 = L.icon({
-            iconUrl: 'icon/2cyclone.svg',
+            iconUrl: 'icon/3cyclone.svg',
             iconSize: [30, 30],
         }) // size of the icon   
 
-        var track_siklon_bbu = L.layerGroup().addTo(map)
-        var garistrack = L.layerGroup().addTo(map)
 
-        for (m = 0; m < siklonbbutrackJSON_1.length; m++) {
-            var Category = parseInt(siklonbbutrackJSON_1[m].Category)
-            var Coordinate = new L.latLng(([siklonbbutrackJSON_1[m].Latitude, siklonbbutrackJSON_1[m].Longitude]))
+        var customIconbbu_3 = L.icon({
+            iconUrl: 'icon/3cyclone.svg',
+            iconSize: [30, 30],
+        }) // size of the icon   
+
+
+
+        var customIconbbu_4 = L.icon({
+            iconUrl: 'icon/4cyclone.svg',
+            iconSize: [30, 30],
+        }) // size of the icon   
+
+
+
+        var customIconbbu_5 = L.icon({
+            iconUrl: 'icon/5cyclone.svg',
+            iconSize: [30, 30],
+        }) // size of the icon   
+
+
+        var track_siklon_bbu = L.layerGroup()//.addTo(map)
+        var bibit_siklon = L.layerGroup().addTo(map)
+        var garistrack = L.layerGroup()//.addTo(map)
+
+        // BIBIT SIKLON 
+        for (o = 0; o < bibitsiklon.length; o++) {
+            var Category = parseInt(bibitsiklon[o].Category)
+            var Coordinate = new L.latLng(([bibitsiklon[o].Latitude, bibitsiklon[o].Longitude]))
             var marker = L.marker(Coordinate, { icon: customIconbbu_0 })
-            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[m].Name + '</h3></b></center>' + siklonbbutrackJSON_1[m].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[m].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[m].MeanWind + "kt");
-            if (Category < 1) { track_siklon_bbu.addLayer(marker) }
+            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + bibitsiklon[o].Name + '</h3></b></center>' + bibitsiklon[o].Time + '</br>' + "<b>Tekanan : </b>" + bibitsiklon[o].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + bibitsiklon[o].MeanWind + "kt");
+            if (Category < 1) { bibit_siklon.addLayer(marker) }
             else { }
         }
+
+        //SIKLON BBU 
 
 
         for (i = 0; i < siklonbbutrackJSON_1.length; i++) {
@@ -682,9 +719,9 @@
         for (p = 0; p < siklonbbutrackJSON_1.length; p++) {
             var Category = parseInt(siklonbbutrackJSON_1[p].Category)
             var Coordinate = new L.latLng(([siklonbbutrackJSON_1[p].Latitude, siklonbbutrackJSON_1[p].Longitude]))
-            var marker = L.marker(Coordinate, { icon: customIconbbu_2 })
+            var marker = L.marker(Coordinate, { icon: customIconbbu_3 })
             marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[p].Name + '</h3></b></center>' + siklonbbutrackJSON_1[p].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[p].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[p].MeanWind + "kt");
-            if (Category > 3 && Category < 5) { track_siklon_bbu.addLayer(marker) }
+            if (Category > 2 && Category < 4) { track_siklon_bbu.addLayer(marker) }
             else { }
         }
 
@@ -692,11 +729,23 @@
         for (k = 0; k < siklonbbutrackJSON_1.length; k++) {
             var Category = parseInt(siklonbbutrackJSON_1[k].Category)
             var Coordinate = new L.latLng(([siklonbbutrackJSON_1[k].Latitude, siklonbbutrackJSON_1[k].Longitude]))
-            var marker = L.marker(Coordinate, { icon: customIconbbu_3 })
+            var marker = L.marker(Coordinate, { icon: customIconbbu_4 })
             marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[k].Name + '</h3></b></center>' + siklonbbutrackJSON_1[k].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[k].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[k].MeanWind + "kt");
-            if (Category > 2 && Category < 4) { track_siklon_bbu.addLayer(marker) }
+            if (Category > 3 && Category < 5) { track_siklon_bbu.addLayer(marker) }
             else { }
         }
+
+
+        for (n = 0; n < siklonbbutrackJSON_1.length; n++) {
+            var Category = parseInt(siklonbbutrackJSON_1[n].Category)
+            var Coordinate = new L.latLng(([siklonbbutrackJSON_1[n].Latitude, siklonbbutrackJSON_1[n].Longitude]))
+            var marker = L.marker(Coordinate, { icon: customIconbbu_5 })
+            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[n].Name + '</h3></b></center>' + siklonbbutrackJSON_1[n].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[n].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[n].MeanWind + "kt");
+            if (Category > 4 && Category < 6) { track_siklon_bbu.addLayer(marker) }
+            else { }
+        }
+
+
 
 
         //GARIS TRACK SIKLON 
@@ -706,7 +755,7 @@
             var CoordinateB = new L.latLng(([siklonbbutrackJSON_1[l + 1].Latitude, siklonbbutrackJSON_1[l + 1].Longitude]))
             var polyline = L.polyline([Coordinate, CoordinateB], { color: 'black' })
             // map.fitBounds(polyline.getBounds());
-            if (Category >= 0) { garistrack.addLayer(polyline) }
+            if (Category = 5) { garistrack.addLayer(polyline) }
             else { }
         }
 
@@ -722,11 +771,11 @@
         // var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 })//.addTo(map);
 
         var data_d00 = moment.utc().subtract(30, 'minutes').format('YYYYMMDDHH');
-  
 
-        
-        
-        
+
+
+
+
 
         console.log(data_d00)
 
@@ -739,10 +788,10 @@
         var slider = document.getElementById("myRange");
         var output = document.getElementById("demo");
         output.innerHTML = slider.value;
-                slider.oninput = function (e) {
-                    let value = parseInt(e.target.value);
-                    output.innerHTML = this.value;
-                };
+        slider.oninput = function (e) {
+            let value = parseInt(e.target.value);
+            output.innerHTML = this.value;
+        };
         var satelit = document.getElementById('img_satelit');
         var img_array1 = ['image/H08_ET_Indonesia_' + data_d00 + '00.png', 'image/H08_ET_Indonesia_' + data_d00 + '10.png', 'image/H08_ET_Indonesia_' + data_d00 + '20.png', 'image/H08_ET_Indonesia_' + data_d00 + '30.png', 'image/H08_ET_Indonesia_' + data_d00 + '40.png', 'image/H08_ET_Indonesia_' + data_d00 + '50.png'];
         function setImage(obj) {
@@ -777,6 +826,7 @@
             // "Citra Satelit": LayerSatelit,
             "Prakiraan": markersLayers,
             "SATELIT CUACA": LayerSatelit,
+            "BIBIT TC": bibit_siklon,
             "TC-BBU": track_siklon_bbu,
             "TrackTC": garistrack,
 
