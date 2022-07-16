@@ -322,6 +322,8 @@
             opacity: 0.3;
 
         }
+
+        
     </style>
 </head>
 
@@ -380,6 +382,7 @@
 
 
         let apiUrl = 'https://api.kodingakan.id/bmkg/prakicu';
+        // let apiUrl = 'https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-DKIJakarta.xml';
         let markersLayers = new L.LayerGroup();
 
 
@@ -466,7 +469,7 @@
                             '</tr>';
                     }
 
-                    if (getDateTime.substring(0, 10) > dateTime.format('YYYYMMDDHH') && getTime == false) {
+                    if (getDateTime.substring(0, 10) >= dateTime.format('YYYYMMDDHH') && getTime == false) {
                         posPrakiraan = i;
                         nextDate = getDateTime;
                         getTime = true;
