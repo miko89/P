@@ -322,8 +322,6 @@
             opacity: 0.3;
 
         }
-
-        
     </style>
 </head>
 
@@ -700,13 +698,13 @@
 
         //SIKLON BBU 
         for (l = 0; l < siklonbbutrackJSON_1.length; l++) {
-    var Category = parseInt(siklonbbutrackJSON_1[l].Category)
-    var Coordinate = new L.latLng(([siklonbbutrackJSON_1[l].Latitude, siklonbbutrackJSON_1[l].Longitude]))
-    var marker = L.marker(Coordinate, { icon: customIconbbu_0 })
-    marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[l].Name + '</h3></b></center>' + siklonbbutrackJSON_1[l].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[l].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[l].MeanWind + "kt");
-    if (Category < 1) { track_siklon_bbu.addLayer(marker) }
-    else { }
-}
+            var Category = parseInt(siklonbbutrackJSON_1[l].Category)
+            var Coordinate = new L.latLng(([siklonbbutrackJSON_1[l].Latitude, siklonbbutrackJSON_1[l].Longitude]))
+            var marker = L.marker(Coordinate, { icon: customIconbbu_0 })
+            marker.bindPopup('<center><b><h3 style="background-color:#013566; color:white">' + siklonbbutrackJSON_1[l].Name + '</h3></b></center>' + siklonbbutrackJSON_1[l].Time + '</br>' + "<b>Tekanan : </b>" + siklonbbutrackJSON_1[l].Pressure + "hPa" + '</br>' + "<b>Kec.Angin : </b>" + siklonbbutrackJSON_1[l].MeanWind + "kt");
+            if (Category < 1) { track_siklon_bbu.addLayer(marker) }
+            else { }
+        }
 
         for (i = 0; i < siklonbbutrackJSON_1.length; i++) {
             var Category = parseInt(siklonbbutrackJSON_1[i].Category)
@@ -825,6 +823,80 @@
         // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 })//.addTo(map);
 
 
+        var urlImageJAK = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=JAK'
+        var urlBoundsJAK = 'http://radar.bmkg.go.id:8090/radarbounds?radar=JAK'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+        var imageAPIJAK = JSON.parse(getAPI(urlImageJAK));
+        var boundsAPIJAK = JSON.parse(getAPI(urlBoundsJAK));
+        var latestImageJAK = imageAPIJAK.Latest.file
+        var latLngBoundsJAK = L.latLngBounds([boundsAPIJAK.overlayBRC, boundsAPIJAK.overlayTLC]);
+        var imageRadarJAK = L.imageOverlay(latestImageJAK, latLngBoundsJAK, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsJAK);
+
+        var urlImageYOG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=YOG'
+        var urlBoundsYOG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=YOG'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+        var imageAPIYOG = JSON.parse(getAPI(urlImageYOG));
+        var boundsAPIYOG = JSON.parse(getAPI(urlBoundsYOG));
+        var latestImageYOG = imageAPIYOG.Latest.file
+        var latLngBoundsYOG = L.latLngBounds([boundsAPIYOG.overlayBRC, boundsAPIYOG.overlayTLC]);
+        var imageRadarYOG = L.imageOverlay(latestImageYOG, latLngBoundsYOG, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsYOG);
+
+
+        var urlImageSBY = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=SBY'
+        var urlBoundsSBY = 'http://radar.bmkg.go.id:8090/radarbounds?radar=SBY'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+        var imageAPISBY = JSON.parse(getAPI(urlImageSBY));
+        var boundsAPISBY = JSON.parse(getAPI(urlBoundsSBY));
+        var latestImageSBY = imageAPISBY.Latest.file
+        var latLngBoundsSBY = L.latLngBounds([boundsAPISBY.overlayBRC, boundsAPISBY.overlayTLC]);
+        var imageRadarSBY = L.imageOverlay(latestImageSBY, latLngBoundsSBY, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsSBY);
+
+
+
+
+
+
+
+
         var baseLayers = {
             "Light": light,
             "Dark": dark,
@@ -835,10 +907,17 @@
         var overlays = {
             // "Citra Satelit": LayerSatelit,
             "Prakiraan": markersLayers,
-            "SATELIT CUACA": LayerSatelit,
+            "Satelit Cuaca": LayerSatelit,
+            "Radar Cuaca JAKARTA": imageRadarJAK,
+            "Radar Cuaca YOGYA": imageRadarYOG,
+             "Radar Cuaca SURABAYA": imageRadarSBY,
+
+
             "BIBIT TC": bibit_siklon,
             "TC-BBU": track_siklon_bbu,
             "TrackTC": garistrack,
+
+
 
 
 
