@@ -1,3 +1,25 @@
 [
+    {
+        "Name": "BIBIT SIKLON 95S",
+        "Time": "2022-07-28T00:00:00Z",
+        "Latitude": "9.7",
+        "Longitude": "95.0",
+        "Symbol": "",
+        "Category": "0",
+        "Pressure": "1006.4",
+        "MeanWind": "20.0",
+        "WindGust": ""
+    },
+    {
+        "Name": "BIBIT SIKLON 93W",
+        "Time": "2022-07-28T00:00:00Z",
+        "Latitude": "19.2",
+        "Longitude": "139.3",
+        "Symbol": "",
+        "Category": "0",
+        "Pressure": "1002.0",
+        "MeanWind": "30.0",
+        "WindGust": ""
+    }
    
 ]
