@@ -31,6 +31,9 @@
 
         <script src="js/L.Control.MousePosition.js"></script>
         <link rel="stylesheet" href="css/L.Control.MousePosition.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.css" integrity="sha384-P9DABSdtEY/XDbEInD3q+PlL+BjqPCXGcF8EkhtKSfSTr/dS5PBKa9+/PMkW2xsY" crossorigin="anonymous">  
+<script src="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.js" integrity="sha384-N2S8y7hRzXUPiepaSiUvBH1ZZ7Tc/ZfchhbPdvOE5v3aBBCIepq9l+dBJPFdo1ZJ" crossorigin="anonymous"></script>
     <style>
         #map {
             height: 85vh;
@@ -381,9 +384,9 @@
         var c = new L.Control.MousePosition( { position: 'topleft' });
     c.addTo(map);
 
-    map.on('click', function (e) {
-        c.setCoordinates(e);
-    });
+    // map.on('click', function (e) {
+    //     c.setCoordinates(e);
+    // });
 
 
 
@@ -824,12 +827,59 @@
 
         var LayerSatelit = L.imageOverlay(imageUrl_satelit, imageBounds_satelit, { zindex: 900 }).addTo(map);
 
+       
         //     var satelit = document.getElementById('img_satelit');
         // var imageUrl = 'image/H08_ET_Indonesia_'+data_00+'00.png',
         //     imageBounds = [[-20.2, 88.8], [32.0, 150.0]];
 
-        // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 })//.addTo(map);
+        // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 }).addTo(map)
 
+        var urlImagePLB = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=PLB'
+        var urlBoundsPLB = 'http://radar.bmkg.go.id:8090/radarbounds?radar=PLB'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+
+        var imageAPIPLB = JSON.parse(getAPI(urlImagePLB));
+        var boundsAPIPLB = JSON.parse(getAPI(urlBoundsPLB));
+        var latestImagePLB = imageAPIPLB.Latest.file
+        var latLngBoundsPLB = L.latLngBounds([boundsAPIPLB.overlayBRC, boundsAPIPLB.overlayTLC]);
+        var imageRadarPLB = L.imageOverlay(latestImagePLB, latLngBoundsPLB, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsPLB);
+
+
+        var urlImageLPG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=LPG'
+        var urlBoundsLPG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=LPG'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+
+        var imageAPILPG = JSON.parse(getAPI(urlImageLPG));
+        var boundsAPILPG = JSON.parse(getAPI(urlBoundsLPG));
+        var latestImageLPG = imageAPILPG.Latest.file
+        var latLngBoundsLPG = L.latLngBounds([boundsAPILPG.overlayBRC, boundsAPILPG.overlayTLC]);
+        var imageRadarLPG = L.imageOverlay(latestImageLPG, latLngBoundsLPG, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsLPG);
 
         // var urlImageJAK = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=JAK'
         // var urlBoundsJAK = 'http://radar.bmkg.go.id:8090/radarbounds?radar=JAK'
@@ -898,7 +948,30 @@
         // }).addTo(map);
         // map.fitBounds(latLngBoundsSBY);
 
-
+        var options = {
+            position: 'topleft',         // Leaflet control position option
+      circleMarker: {               // Leaflet circle marker options for points used in this plugin
+        color: 'red',
+        radius: 2
+      },
+      lineStyle: {                  // Leaflet polyline options for lines used in this plugin
+        color: 'red',
+        // dashArray: '1,6'
+      },
+      lengthUnit: {                 // You can use custom length units. Default unit is kilometers.
+        display: 'km',              // This is the display value will be shown on the screen. Example: 'meters'
+        decimal: 2,                 // Distance result will be fixed to this value. 
+        factor: null,               // This value will be used to convert from kilometers. Example: 1000 (from kilometers to meters)  
+        label: 'Distance:'           
+      },
+      angleUnit: {
+        display: '&deg;',           // This is the display value will be shown on the screen. Example: 'Gradian'
+        decimal: 2,                 // Bearing result will be fixed to this value.
+        factor: null,                // This option is required to customize angle unit. Specify solid angle value for angle unit. Example: 400 (for gradian).
+        label: 'Bearing:'
+      }
+    };
+L.control.ruler(options).addTo(map);
 
 
 
@@ -916,8 +989,8 @@
             // "Citra Satelit": LayerSatelit,
             "Prakiraan": markersLayers,
             "Satelit Cuaca": LayerSatelit,
-            // "Radar Cuaca JAKARTA": imageRadarJAK,
-            // "Radar Cuaca YOGYA": imageRadarYOG,
+            "Radar Cuaca SUMSEL": imageRadarPLB,
+            "Radar Cuaca LAMPUNG": imageRadarLPG,
             //  "Radar Cuaca SURABAYA": imageRadarSBY,
 
 
