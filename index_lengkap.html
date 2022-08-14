@@ -834,74 +834,74 @@
 
         // var LayerSatelit = L.imageOverlay(imageUrl, imageBounds, { zindex: 900 }).addTo(map)
 
-        // var urlImagePLB = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=PLB'
-        // var urlBoundsPLB = 'http://radar.bmkg.go.id:8090/radarbounds?radar=PLB'
+        var urlImagePLB = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=PLB'
+        var urlBoundsPLB = 'http://radar.bmkg.go.id:8090/radarbounds?radar=PLB'
 
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
-
-
-        // var imageAPIPLB = JSON.parse(getAPI(urlImagePLB));
-        // var boundsAPIPLB = JSON.parse(getAPI(urlBoundsPLB));
-        // var latestImagePLB = imageAPIPLB.Latest.file
-        // var latLngBoundsPLB = L.latLngBounds([boundsAPIPLB.overlayBRC, boundsAPIPLB.overlayTLC]);
-        // var imageRadarPLB = L.imageOverlay(latestImagePLB, latLngBoundsPLB, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsPLB);
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
 
 
-        // var urlImageLPG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=LPG'
-        // var urlBoundsLPG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=LPG'
-
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
+        var imageAPIPLB = JSON.parse(getAPI(urlImagePLB));
+        var boundsAPIPLB = JSON.parse(getAPI(urlBoundsPLB));
+        var latestImagePLB = imageAPIPLB.Latest.file
+        var latLngBoundsPLB = L.latLngBounds([boundsAPIPLB.overlayBRC, boundsAPIPLB.overlayTLC]);
+        var imageRadarPLB = L.imageOverlay(latestImagePLB, latLngBoundsPLB, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsPLB);
 
 
-        // var imageAPILPG = JSON.parse(getAPI(urlImageLPG));
-        // var boundsAPILPG = JSON.parse(getAPI(urlBoundsLPG));
-        // var latestImageLPG = imageAPILPG.Latest.file
-        // var latLngBoundsLPG = L.latLngBounds([boundsAPILPG.overlayBRC, boundsAPILPG.overlayTLC]);
-        // var imageRadarLPG = L.imageOverlay(latestImageLPG, latLngBoundsLPG, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsLPG);
+        var urlImageLPG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=LPG'
+        var urlBoundsLPG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=LPG'
 
-        // var urlImageJAK = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=JAK'
-        // var urlBoundsJAK = 'http://radar.bmkg.go.id:8090/radarbounds?radar=JAK'
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
 
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
 
-        // var imageAPIJAK = JSON.parse(getAPI(urlImageJAK));
-        // var boundsAPIJAK = JSON.parse(getAPI(urlBoundsJAK));
-        // var latestImageJAK = imageAPIJAK.Latest.file
-        // var latLngBoundsJAK = L.latLngBounds([boundsAPIJAK.overlayBRC, boundsAPIJAK.overlayTLC]);
-        // var imageRadarJAK = L.imageOverlay(latestImageJAK, latLngBoundsJAK, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsJAK);
+        var imageAPILPG = JSON.parse(getAPI(urlImageLPG));
+        var boundsAPILPG = JSON.parse(getAPI(urlBoundsLPG));
+        var latestImageLPG = imageAPILPG.Latest.file
+        var latLngBoundsLPG = L.latLngBounds([boundsAPILPG.overlayBRC, boundsAPILPG.overlayTLC]);
+        var imageRadarLPG = L.imageOverlay(latestImageLPG, latLngBoundsLPG, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsLPG);
+
+        var urlImageJAK = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=JAK'
+        var urlBoundsJAK = 'http://radar.bmkg.go.id:8090/radarbounds?radar=JAK'
+
+        function getAPI(url) {
+            var value = $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json'
+            }).responseText;
+            return value;
+        }
+
+        var imageAPIJAK = JSON.parse(getAPI(urlImageJAK));
+        var boundsAPIJAK = JSON.parse(getAPI(urlBoundsJAK));
+        var latestImageJAK = imageAPIJAK.Latest.file
+        var latLngBoundsJAK = L.latLngBounds([boundsAPIJAK.overlayBRC, boundsAPIJAK.overlayTLC]);
+        var imageRadarJAK = L.imageOverlay(latestImageJAK, latLngBoundsJAK, {
+            opacity: 0.8,
+            interactive: true
+        }).addTo(map);
+        map.fitBounds(latLngBoundsJAK);
 
         // var urlImageYOG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=YOG'
         // var urlBoundsYOG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=YOG'
@@ -997,9 +997,9 @@ L.control.ruler(options).addTo(map);
             // "Citra Satelit": LayerSatelit,
             "Prakiraan": markersLayers,
             "Satelit Cuaca": LayerSatelit,
-            // "Radar Cuaca SUMSEL": imageRadarPLB,
-            // "Radar Cuaca LAMPUNG": imageRadarLPG,
-            // "Radar Cuaca JAKARTA": imageRadarJAK,
+            "Radar Cuaca SUMSEL": imageRadarPLB,
+            "Radar Cuaca LAMPUNG": imageRadarLPG,
+            "Radar Cuaca JAKARTA": imageRadarJAK,
             //  "Radar Cuaca SURABAYA": imageRadarSBY,
 
 
