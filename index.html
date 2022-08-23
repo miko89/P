@@ -693,9 +693,9 @@
         }) // size of the icon   
 
 
-        var track_siklon_bbu = L.layerGroup()//.addTo(map)
-        var bibit_siklon = L.layerGroup().addTo(map)
-        var garistrack = L.layerGroup()//.addTo(map)
+        var track_siklon_bbu = L.layerGroup().addTo(map)
+        var bibit_siklon = L.layerGroup()//.addTo(map)
+        var garistrack = L.layerGroup().addTo(map)
 
         // BIBIT SIKLON 
         for (o = 0; o < bibitsiklon.length; o++) {
@@ -846,107 +846,95 @@
         //     return value;
         // }
 
-
-        // var imageAPIPLB = JSON.parse(getAPI(urlImagePLB));
-        // var boundsAPIPLB = JSON.parse(getAPI(urlBoundsPLB));
-        // var latestImagePLB = imageAPIPLB.Latest.file
-        // var latLngBoundsPLB = L.latLngBounds([boundsAPIPLB.overlayBRC, boundsAPIPLB.overlayTLC]);
-        // var imageRadarPLB = L.imageOverlay(latestImagePLB, latLngBoundsPLB, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsPLB);
-
-
-        // var urlImageLPG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=LPG'
-        // var urlBoundsLPG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=LPG'
-
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
+var radarID = 'MND'
+var token = 'd55483ba0ac25dda1596bb7115351a9570d04324123d55cf14a58b9c8cf6'
+var urlWMS='https://radar.bmkg.go.id:8090/sidarmawms?'+'token='+token+'&radar='+radarID
+function getAPI(url){
+    var value= $.ajax({ 
+        url: url, 
+        async: false,
+        dataType:'json'
+    }).responseJSON;
+    return value;
+}
+var wmsOption=getAPI(urlWMS);
+var wmsRadarMND = L.tileLayer.wms(wmsOption.urlWMS, {
+    layers: wmsOption.layer,
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.0',
+    attribution: "myattribution",
+    styles:'CMAX_dBZ'
+}).addTo(map);
 
 
-        // var imageAPILPG = JSON.parse(getAPI(urlImageLPG));
-        // var boundsAPILPG = JSON.parse(getAPI(urlBoundsLPG));
-        // var latestImageLPG = imageAPILPG.Latest.file
-        // var latLngBoundsLPG = L.latLngBounds([boundsAPILPG.overlayBRC, boundsAPILPG.overlayTLC]);
-        // var imageRadarLPG = L.imageOverlay(latestImageLPG, latLngBoundsLPG, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsLPG);
+var radarID = 'GOR'
+var token = 'd55483ba0ac25dda1596bb7115351a9570d04324123d55cf14a58b9c8cf6'
+var urlWMS='https://radar.bmkg.go.id:8090/sidarmawms?'+'token='+token+'&radar='+radarID
+function getAPI(url){
+    var value= $.ajax({ 
+        url: url, 
+        async: false,
+        dataType:'json'
+    }).responseJSON;
+    return value;
+}
 
-        // var urlImageJAK = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=JAK'
-        // var urlBoundsJAK = 'http://radar.bmkg.go.id:8090/radarbounds?radar=JAK'
-
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
-
-        // var imageAPIJAK = JSON.parse(getAPI(urlImageJAK));
-        // var boundsAPIJAK = JSON.parse(getAPI(urlBoundsJAK));
-        // var latestImageJAK = imageAPIJAK.Latest.file
-        // var latLngBoundsJAK = L.latLngBounds([boundsAPIJAK.overlayBRC, boundsAPIJAK.overlayTLC]);
-        // var imageRadarJAK = L.imageOverlay(latestImageJAK, latLngBoundsJAK, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsJAK);
-
-        // var urlImageYOG = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=YOG'
-        // var urlBoundsYOG = 'http://radar.bmkg.go.id:8090/radarbounds?radar=YOG'
-
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
-
-        // var imageAPIYOG = JSON.parse(getAPI(urlImageYOG));
-        // var boundsAPIYOG = JSON.parse(getAPI(urlBoundsYOG));
-        // var latestImageYOG = imageAPIYOG.Latest.file
-        // var latLngBoundsYOG = L.latLngBounds([boundsAPIYOG.overlayBRC, boundsAPIYOG.overlayTLC]);
-        // var imageRadarYOG = L.imageOverlay(latestImageYOG, latLngBoundsYOG, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsYOG);
+var wmsOption=getAPI(urlWMS);
+var wmsRadarGOR = L.tileLayer.wms(wmsOption.urlWMS, {
+    layers: wmsOption.layer,
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.0',
+    attribution: "myattribution",
+    styles:'CMAX_dBZ'
+}).addTo(map);
 
 
-        // var urlImageSBY = 'http://radar.bmkg.go.id:8090/sidarmaimage?radar=SBY'
-        // var urlBoundsSBY = 'http://radar.bmkg.go.id:8090/radarbounds?radar=SBY'
+var radarID = 'TAR'
+var token = 'd55483ba0ac25dda1596bb7115351a9570d04324123d55cf14a58b9c8cf6'
+var urlWMS='https://radar.bmkg.go.id:8090/sidarmawms?'+'token='+token+'&radar='+radarID
+function getAPI(url){
+    var value= $.ajax({ 
+        url: url, 
+        async: false,
+        dataType:'json'
+    }).responseJSON;
+    return value;
+}
+var wmsOption=getAPI(urlWMS);
+var wmsRadarTAR = L.tileLayer.wms(wmsOption.urlWMS, {
+    layers: wmsOption.layer,
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.0',
+    attribution: "myattribution",
+    styles:'CMAX_dBZ'
+}).addTo(map);
 
-        // function getAPI(url) {
-        //     var value = $.ajax({
-        //         url: url,
-        //         async: false,
-        //         dataType: 'json'
-        //     }).responseText;
-        //     return value;
-        // }
 
-        // var imageAPISBY = JSON.parse(getAPI(urlImageSBY));
-        // var boundsAPISBY = JSON.parse(getAPI(urlBoundsSBY));
-        // var latestImageSBY = imageAPISBY.Latest.file
-        // var latLngBoundsSBY = L.latLngBounds([boundsAPISBY.overlayBRC, boundsAPISBY.overlayTLC]);
-        // var imageRadarSBY = L.imageOverlay(latestImageSBY, latLngBoundsSBY, {
-        //     opacity: 0.8,
-        //     interactive: true
-        // }).addTo(map);
-        // map.fitBounds(latLngBoundsSBY);
+
+
+var radarID = 'TTE'
+var token = 'd55483ba0ac25dda1596bb7115351a9570d04324123d55cf14a58b9c8cf6'
+var urlWMS='https://radar.bmkg.go.id:8090/sidarmawms?'+'token='+token+'&radar='+radarID
+function getAPI(url){
+    var value= $.ajax({ 
+        url: url, 
+        async: false,
+        dataType:'json'
+    }).responseJSON;
+    return value;
+}
+var wmsOption=getAPI(urlWMS);
+var wmsRadarTTE = L.tileLayer.wms(wmsOption.urlWMS, {
+    layers: wmsOption.layer,
+    format: 'image/png',
+    transparent: true,
+    version: '1.1.0',
+    attribution: "myattribution",
+    styles:'CMAX_dBZ'
+}).addTo(map);
 
         var options = {
             position: 'topleft',         // Leaflet control position option
@@ -997,13 +985,17 @@ L.control.ruler(options).addTo(map);
             // "Citra Satelit": LayerSatelit,
             "Prakiraan": markersLayers,
             "Satelit Cuaca": LayerSatelit,
-            // "Radar Cuaca SUMSEL": imageRadarPLB,
+            "Radar Cuaca MANADO": wmsRadarMND,
+            "Radar Cuaca GORONTALO": wmsRadarGOR,
+            "Radar Cuaca TERNATE": wmsRadarTTE,
+            "Radar Cuaca TARAKAN": wmsRadarTAR,
+
             // "Radar Cuaca LAMPUNG": imageRadarLPG,
             // "Radar Cuaca JAKARTA": imageRadarJAK,
             //  "Radar Cuaca SURABAYA": imageRadarSBY,
 
 
-            "BIBIT TC": bibit_siklon,
+            // "BIBIT TC": bibit_siklon,
             "TC-BBU": track_siklon_bbu,
             "TrackTC": garistrack,
 
